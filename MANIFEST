@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/XML-FromPerl.t
+lib/XML/FromPerl.pm
