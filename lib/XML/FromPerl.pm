@@ -19,10 +19,15 @@ sub xml_node_from_perl {
 
     if (ref $data eq 'ARRAY') {
         my $e = $doc->createElement($data->[0]);
-        my $has_attrs = ref $data->[1] eq 'HASH';
+        my $one = $data->[1];
+        my $has_attrs = ref $one eq 'HASH';
         if ($has_attrs) {
-            while (my ($k, $v) = each %{$data->[1]}) {
-                $e->setAttribute($k, $v) if defined $v;
+            my @keys = keys %$one;
+            @keys = sort @keys unless tied %$one;
+            for (@keys) {
+                if (defined (my $v = $one->{$_})) {
+                    $e->setAttribute($_, $v);
+                }
             }
         }
         $e->appendChild(xml_node_from_perl($doc, $data->[$_]))
@@ -89,15 +94,16 @@ object linked to the document passed.
 
 =head2 NOTES
 
-=head3 Name spaces
+=head3 Namespaces
 
 I have not made my mind yet about how to handle XML namespaces other
-than stating them explicitly in the names.
+than stating them explicitly in the names or setting the C<xmlns>
+attribute.
 
 =head3 Attribute order
 
-If attribute order is important for you, then use L<Tie::IxHash> to
-declare then.
+If attribute order is important to you, declare then using
+L<Tie::IxHash>:
 
 For instance:
 
@@ -110,13 +116,16 @@ For instance:
 
   my $doc = xml_from_perl [ Foo => attrs(attr1 => val1, attrs2 => val2), ...];
 
+Otherwise attributes are sorted in lexicographical order.
+
 =head3 Memory usage
 
 This module is not very memory efficient. At some point it is going to
 keep in memory both the original perl data structure and the
 XML::LibXML one.
 
-Anyway, nowadays that shouldn't be a problem unless your data is huge.
+Anyway, nowadays that shouldn't be a problem unless your data is
+really huge.
 
 =head1 SEE ALSO
 
