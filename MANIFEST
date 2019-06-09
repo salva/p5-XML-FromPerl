@@ -1,6 +1,7 @@
+.editorconfig
 Changes
+lib/XML/FromPerl.pm
 Makefile.PL
 MANIFEST
 README
-t/XML-FromPerl.t
-lib/XML/FromPerl.pm
+t/00_load.t
