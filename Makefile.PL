@@ -1,4 +1,4 @@
-use 5.010;
+#!perl
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;
@@ -16,8 +16,11 @@ my %opts =  (  NAME          => 'XML::FromPerl',
                CONFIGURE_REQUIRES => {
                    'ExtUtils::MakeMaker' => '0',
                    'File::Spec' => '0',
-                   'strict' => '0',
-                   'warnings' => '0',
+               },
+
+               TEST_REQUIRES => {
+                   'Test::More' => '0',
+                   'Tie::IxHash' => '0',
                },
 
                META_MERGE    => {
@@ -31,6 +34,21 @@ my %opts =  (  NAME          => 'XML::FromPerl',
                         type => 'git',
                         url  => 'https://github.com/salva/p5-XML-FromPerl.git',
                         web  => 'https://github.com/salva/p5-XML-FromPerl',
+                    },
+                },
+
+                prereqs => {
+                    develop => {
+                        recommends => {
+                            'App::RewriteVersion' => '0',   # for perl-bump-version
+                            'Devel::Cover' => '0',
+                        },
+                    },
+                },
+
+                provides => {
+                    'XML::FromPerl' => {
+                        file => join "/", File::Spec->splitdir($VERSION_FROM),
                     },
                 },
 

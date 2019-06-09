@@ -3,5 +3,8 @@ Changes
 lib/XML/FromPerl.pm
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
 README
 t/00_load.t
+t/01_basic.t
+t/02_tie.t
