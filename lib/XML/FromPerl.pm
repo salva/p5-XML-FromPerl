@@ -2,7 +2,6 @@ package XML::FromPerl;
 
 our $VERSION = '0.01';
 
-use 5.010;
 use strict;
 use warnings;
 
