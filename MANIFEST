@@ -8,3 +8,5 @@ README
 t/00_load.t
 t/01_basic.t
 t/02_tie.t
+t/03_undef.t
+t/04_comment.t

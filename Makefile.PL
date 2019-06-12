@@ -20,6 +20,7 @@ my %opts =  (  NAME          => 'XML::FromPerl',
 
                TEST_REQUIRES => {
                    'Test::More' => '0',
+                   'Test::Warn' => '0',
                    'Tie::IxHash' => '0',
                },
 
