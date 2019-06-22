@@ -1,14 +1,18 @@
 #!perl
 
 use strict;
-use warnings;
+use XML::LibXML;
+
 use XML::FromPerl qw(xml_from_perl xml_node_from_perl);
 use Test::More;
+use warnings;
 
 sub testname {
     my (undef, undef, $line) = caller;
     "(line $line)"
 }
+
+# === xml_from_perl ===
 
 # Example from the perldoc, modified
 my $doc = xml_from_perl
@@ -103,5 +107,11 @@ is $child->nodeName, 'yep', testname;
 
 $child = $child->nextSibling;
 is $child->textContent, "bye!", testname;
+
+# === xml_node_from_perl ===
+
+$doc = XML::LibXML::Document->new;
+my $el = xml_node_from_perl($doc, [ Foo => {attr=>42}, '1337' ]);
+is $el->toString, '<Foo attr="42">1337</Foo>', testname;
 
 done_testing;
