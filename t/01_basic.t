@@ -1,11 +1,11 @@
 #!perl
 
 use strict;
-use warnings;
 use XML::LibXML;
 
 use XML::FromPerl qw(xml_from_perl xml_node_from_perl);
 use Test::More;
+use warnings;
 
 sub testname {
     my (undef, undef, $line) = caller;

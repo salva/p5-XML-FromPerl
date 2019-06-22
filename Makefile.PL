@@ -14,14 +14,26 @@ my %opts =  (  NAME          => 'XML::FromPerl',
                LICENSE       => 'perl',
 
                CONFIGURE_REQUIRES => {
-                   'ExtUtils::MakeMaker' => '0',
-                   'File::Spec' => '0',
+                    'ExtUtils::MakeMaker' => '0',
+                    'File::Spec' => '0',
                },
 
                TEST_REQUIRES => {
-                   'Test::More' => '0',
-                   'Test::Warn' => '0',
-                   'Tie::IxHash' => '0',
+                    'Test::More' => '0',
+                    'Test::Warn' => '0',
+                    'Tie::IxHash' => '0',
+               },
+
+               PREREQ_PM => {
+                    'if' => '0',
+                    'Exporter' => '0',
+                    'Import::Into' => '1.002004',
+                    'parent' => '0',
+                    'strict' => '0',
+                    'vars' => '0',
+                    'warnings' => '0',
+                    'warnings::register' => '0',
+                    'XML::LibXML' => '0',
                },
 
                META_MERGE    => {

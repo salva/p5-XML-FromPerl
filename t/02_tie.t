@@ -1,10 +1,10 @@
 #!perl
 
 use strict;
-use warnings;
 use XML::FromPerl qw(xml_from_perl);
 use Test::More;
 use Tie::IxHash;
+use warnings;
 
 sub testname {
     my (undef, undef, $line) = caller;
